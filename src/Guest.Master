@@ -1,0 +1,37 @@
+﻿<%@ Master Language="C#"  AutoEventWireup="true" CodeBehind="Guest.Master.cs" Inherits="NomadEcommerce.GuestMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Nomad Ecommerce</title>
+    <link rel="stylesheet" href="/Content/bootstrap.css" />
+    <script src="/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="/Scripts/NomadEcommercePasswordVisibility.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // setTimeout() function will be fired after page is loaded
+            // it will wait for 5 sec. and then will fire
+            // $("#successMessage").hide() function
+            setTimeout(function () {
+                $("#SuccessMessage").fadeOut(5000);
+                $("#ErrorMessage").fadeOut(5000);
+            }, 2000);
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <asp:Panel ID="SuccessMessage" runat="server" CssClass="alert custom-success-login" role="alert"></asp:Panel>
+    <asp:Panel ID="ErrorMessage" runat="server" CssClass="alert custom-danger-login" role="alert"></asp:Panel>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
+ 
