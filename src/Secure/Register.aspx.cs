@@ -12,11 +12,14 @@ namespace NomadEcommerce
 
         }
 
-
         public void CreateUser(object sender, EventArgs e)
         {
             try
             {
+                if (this.PasswordText.Text != this.PasswordConfirmText.Text)
+                {
+                    throw new Exception("The Passwords to do match");
+                }
                 TenentUserModel tu = TenentUserModel.LoadModel(
                         this.EmailText.Text,
                         this.PasswordText.Text,

@@ -14,6 +14,9 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+        <div>
+            <asp:Panel runat="server" ID="SessionPnl"></asp:Panel>
+        </div>
     </form>
 </body>
 </html>
