@@ -54,6 +54,11 @@ namespace NomadEcommerce.Model
             return output;
         }
 
+        public TenentUserModel Authenticate()
+        {
+            return new TenentUserModel();
+        }
+
         public TenentUserModel Create()
         {
             if (this.Email.Equals(""))

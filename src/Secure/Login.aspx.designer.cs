@@ -15,13 +15,13 @@ namespace NomadEcommerce.Secure
     {
 
         /// <summary>
-        /// email control.
+        /// EmailText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
+        protected global::System.Web.UI.WebControls.TextBox EmailText;
 
         /// <summary>
         /// PasswordText control.
@@ -58,5 +58,19 @@ namespace NomadEcommerce.Secure
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button login;
+
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new NomadEcommerce.GuestMaster Master
+        {
+            get
+            {
+                return ((NomadEcommerce.GuestMaster)(base.Master));
+            }
+        }
     }
 }

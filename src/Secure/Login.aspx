@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Guest.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="NomadEcommerce.Secure.Login" %>
+<%@ MasterType VirtualPath="~/Guest.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -7,7 +8,7 @@
             <h1 class="">Login</h1>
         </div>
         <div>
-            <asp:TextBox ID="email" runat="server" TextMode="Email" placeholder="Email" CssClass=""></asp:TextBox>
+            <asp:TextBox ID="EmailText" runat="server" TextMode="Email" placeholder="Email" CssClass=""></asp:TextBox>
         </div>
         <div id="PasswordContainer">
             <asp:TextBox ID="PasswordText" runat="server" CssClass="" TextMode="Password" placeholder="Password"></asp:TextBox><br />
@@ -23,7 +24,7 @@
     </div>
     <script type="text/javascript">
        $(function () {
-           $("#email").focus();
+           $("#MainContent_EmailText").focus();
            $('#PasswordContainer').NomadPasswordVisibility();
        });
     </script>

@@ -40,6 +40,7 @@ namespace NomadEcommerce
             }
             if ("true" == Request.QueryString["Logout"])
             {
+                this.SuccessMessage.GroupingText = "You have successfully Logged out";
                 sm.DestroySession();
             }
         }
