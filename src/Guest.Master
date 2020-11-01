@@ -15,8 +15,8 @@
             // it will wait for 5 sec. and then will fire
             // $("#successMessage").hide() function
             setTimeout(function () {
-                $("#SuccessMessage").fadeOut(5000);
-                $("#ErrorMessage").fadeOut(5000);
+                $("#SuccessMessage").fadeOut(5000).html('');
+                $("#ErrorMessage").fadeOut(5000).html('');
             }, 2000);
         });
     </script>

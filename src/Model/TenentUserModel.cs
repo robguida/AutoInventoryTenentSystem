@@ -56,7 +56,34 @@ namespace NomadEcommerce.Model
 
         public TenentUserModel Authenticate()
         {
-            return new TenentUserModel();
+            if (this.Email.Equals(""))
+            {
+                throw new Exception("Email is required to login");
+            }
+            if (this.Password.Equals(""))
+            {
+                throw new Exception("Password is required to login");
+            }
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@TenentId", SessionModel.Current().TenentId),
+                new SqlParameter("@Email", this.Email),
+                new SqlParameter("@Password", this.Password)
+            };
+            object result = this.Db.Execute("spTenentUser_Authenticate", parameters, Lib.DBService.RequestType.DataRow);
+            if (null != result)
+            {
+                DataRow dr = (DataRow)result;
+                if (dr.Table.Columns.Contains("error"))
+                {
+                    throw new Exception(dr.Field<string>("error"));
+                }
+                else
+                {
+                    this.Load(dr);
+                }
+            }
+            return this;
         }
 
         public TenentUserModel Create()
@@ -83,6 +110,20 @@ namespace NomadEcommerce.Model
                 this.TenentUserId = result;
             }
             return this;
+        }
+
+        public void Load(DataRow dr)
+        {
+            this.TenentId = dr.Field<int>("TenentId");
+            this.TenentUserId = dr.Field<int>("TenentUserId");
+            this.Email = dr.Field<string>("Email");
+            this.FirstName = dr.Field<string>("FirstName");
+            this.LastName = dr.Field<string>("LastName");
+
+            if (dr.Table.Columns.Contains("TenentId"))
+            {
+                this.TenentId = dr.Field<int>("TenentId");
+            }
         }
     }
 }

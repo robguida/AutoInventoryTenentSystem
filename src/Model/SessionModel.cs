@@ -25,6 +25,7 @@ namespace NomadEcommerce.Model
 
         public void SetAuthSession(TenentUserModel TenentUserModel)
         {
+            TenentUserModel.Password = "";
             this.Auth = TenentUserModel;
         }
 

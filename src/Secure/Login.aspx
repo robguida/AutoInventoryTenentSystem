@@ -16,7 +16,7 @@
             <asp:Label ID="PasswordVisibilityLabel" runat="server">Show Password</asp:Label>
         </div>
         <div class="">
-            <asp:Button ID="login" runat="server" CssClass="" Text="LOG IN" />
+            <asp:Button ID="login" runat="server" CssClass="" Text="LOG IN" OnClick="Authenticate" />
         </div>
         <div class="">
             <asp:HyperLink runat="server" CssClass="" Text="Register" NavigateUrl="~/Secure/Register.aspx" />
