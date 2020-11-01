@@ -18,7 +18,6 @@ namespace NomadEcommerce
                     sm.ErrorMessage = "You are not authenticated";
                     Response.Redirect("~/Secure/Login.aspx");
                 }
-                this.SessionPnl.GroupingText = "Tenent Id = " + sm.TenentId.ToString();
             }
         }
     }
