@@ -610,7 +610,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="TenentCreate.aspx" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -785,13 +784,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TenentCreate.aspx.cs">
-      <DependentUpon>TenentCreate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TenentCreate.aspx.designer.cs">
-      <DependentUpon>TenentCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Secure\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
