@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -16,16 +17,13 @@ namespace NomadEcommerce.Controller
 
         public DataTable List()
         {
-            DataTable output = new DataTable("Auto");
-            //output.Columns.Add("AutoId", Type.GetType("System.Int32"));
-            //output.Columns.Add("AutoInventoryId", Type.GetType("System.Int32"));
-            //output.Columns.Add("Model", Type.GetType("System.String"));
-            //output.Columns.Add("Classifications", Type.GetType("System.String"));
-            //output.Columns.Add("VIN", Type.GetType("System.String"));
-            //output.Columns.Add("Color", Type.GetType("System.String"));
-            //output.Columns.Add("Trim Level", Type.GetType("System.String"));
-            //output.Columns.Add("Doors", Type.GetType("System.Int32"));
-
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@OrderBy", "ModelNumber ASC"),
+                new SqlParameter("@PagingOffset", 0),
+                new SqlParameter("@PagingLimit", 50)
+            };
+            DataTable output = this.List(parameters);
             return output;
         }
 

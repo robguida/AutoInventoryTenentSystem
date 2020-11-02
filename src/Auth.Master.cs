@@ -25,9 +25,9 @@ namespace NomadEcommerce
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            SessionModel sm = SessionModel.Current();
             if (!Page.IsPostBack)
             {
+                SessionModel sm = SessionModel.Current();
                 if (!sm.IsAuthenticated())
                 {
                     sm.ErrorMessage = "You are not authenticated";

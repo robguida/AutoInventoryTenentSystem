@@ -15,6 +15,12 @@ namespace NomadEcommerce
         {
             if (!Page.IsPostBack)
             {
+                SessionModel sm = SessionModel.Current();
+                if (!sm.IsAuthenticated())
+                {
+                    sm.ErrorMessage = "You are not authenticated";
+                    Response.Redirect("~/Secure/Login.aspx");
+                }
                 this.SetUpForm();
             }
             else

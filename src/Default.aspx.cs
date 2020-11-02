@@ -9,13 +9,19 @@ namespace NomadEcommerce
 {
     public partial class Default : Page
     {
-        private AutoController ac { get; set; }
+        private AutoController AC { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                this.ac = new AutoController();
+                SessionModel sm = SessionModel.Current();
+                if (!sm.IsAuthenticated())
+                {
+                    sm.ErrorMessage = "You are not authenticated";
+                    Response.Redirect("~/Secure/Login.aspx");
+                }
+                this.AC = new AutoController();
                 this.BindAutoResults();
             }
             else
@@ -26,7 +32,7 @@ namespace NomadEcommerce
 
         protected void BindAutoResults()
         {
-            DataTable dt = this.ac.List();
+            DataTable dt = this.AC.List();
             if (0 < dt.Rows.Count)
             {
                 this.AutoResultsRepeater.DataSource = dt;
@@ -45,6 +51,7 @@ namespace NomadEcommerce
         {
             if (e.Item.ItemIndex != -1)
             {
+                RepeaterItem MainRepeaterItem = e.Item;
             }
         }
     }
