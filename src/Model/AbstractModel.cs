@@ -54,11 +54,10 @@ namespace NomadEcommerce.Model
             return output;
         }
 
-        protected DataRow Update(List<SqlParameter> parameters)
+        protected void Update(List<SqlParameter> parameters)
         {
             this.AddTenentId(ref parameters);
             this.DB.Execute(this.UpdateProcedure, parameters, DBService.RequestType.Scalar);
-            return this.Read(parameters);
         }
 
         private void AddTenentId(ref List<SqlParameter> parameters)

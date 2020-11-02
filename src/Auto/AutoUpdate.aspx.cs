@@ -68,6 +68,9 @@ namespace NomadEcommerce
             this.TrimLevelDdl.DataBind();
             this.TrimLevelDdl.Items.Insert(0, new ListItem("Select a Trim Level", "0"));
             this.TrimLevelDdl.SelectedValue = AIM.AutoTrimId.ToString();
+
+            this.AutoInventoryIdHidden.Value = this.AutoInventoryId.ToString();
+            this.VinText.Text = AIM.VIN;
         }
 
         protected void UpdateAuto(object sender, EventArgs e)

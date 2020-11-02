@@ -114,8 +114,8 @@ namespace NomadEcommerce.Model
                 new SqlParameter("@VIN", this.VIN),
                 new SqlParameter("@Doors", this.Doors)
             };
-            DataRow result = this.Update(parameters);
-            return (null != result);
+            this.Update(parameters);
+            return true;
         }
     }
 }

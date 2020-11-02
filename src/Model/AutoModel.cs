@@ -99,8 +99,8 @@ namespace NomadEcommerce.Model
                 new SqlParameter("@ModelNumber", this.ModelNumber),
                 new SqlParameter("@Classification", this.classification)
             };
-            DataRow result = this.Update(parameters);
-            return (null != result);
+            this.Update(parameters);
+            return true;
         }
     }
 }
