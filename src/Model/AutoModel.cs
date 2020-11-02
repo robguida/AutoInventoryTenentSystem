@@ -1,6 +1,7 @@
 ﻿using NomadEcommerce.Lib;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -40,6 +41,24 @@ namespace NomadEcommerce.Model
             return output;
         }
 
+        public static AutoModel LoadFromId(int AutoId)
+        {
+            AutoModel output = new AutoModel();
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@AutoId", AutoId)
+            };
+            DataRow dr = output.Read(parameters);
+            if (null != dr)
+            {
+                output.AutoId = dr.Field<int>("AutoId");
+                output.TenentId = dr.Field<int>("TenentId");
+                output.ModelNumber = dr.Field<string>("ModelNumber");
+                output.classification = dr.Field<string>("classification");
+            }
+            return output;
+        }
+
         protected override void SetTable()
         {
             this.TableName = "Auto";
@@ -67,6 +86,21 @@ namespace NomadEcommerce.Model
                 this.AutoId = result;
             }
             return this;
+        }
+        public bool Update()
+        {
+            if (0 >= this.AutoId)
+            {
+                throw new Exception("The Auto record id is required to update an auto");
+            }
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@AutoId", this.AutoId),
+                new SqlParameter("@ModelNumber", this.ModelNumber),
+                new SqlParameter("@Classification", this.classification)
+            };
+            DataRow result = this.Update(parameters);
+            return (null != result);
         }
     }
 }

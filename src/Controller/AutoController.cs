@@ -38,6 +38,24 @@ namespace NomadEcommerce.Controller
             return AIM;
         }
 
+
+        public AutoInventoryModel Update(string AutoInventoryId, string ModelNumber, string Classification, string VIN, string ColorId, string TrimId, string Doors)
+        {
+            AutoInventoryModel AIM = AutoInventoryModel.LoadFromId(Int32.Parse(AutoInventoryId));
+            AIM.VIN = VIN;
+            AIM.AutoColorId = Int32.Parse(ColorId);
+            AIM.AutoTrimId = Int32.Parse(TrimId);
+            AIM.Doors = Int32.Parse(Doors);
+            AIM.Update();
+
+            AutoModel AM = AutoModel.LoadFromId(AIM.AutoId);
+            AM.ModelNumber = ModelNumber;
+            AM.Classification = Classification;
+            AM.Update();
+
+            return AIM;
+        }
+
         public bool Delete(int AutoInventoryId)
         {
             List<SqlParameter> parameters = new List<SqlParameter>

@@ -1,6 +1,7 @@
 ﻿using NomadEcommerce.Lib;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -35,6 +36,27 @@ namespace NomadEcommerce.Model
         protected override void SetTable()
         {
             this.TableName = "AutoInventory";
+        }
+
+        public static AutoInventoryModel LoadFromId(int AutoInventoryId)
+        {
+            AutoInventoryModel output = new AutoInventoryModel();
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@AutoInventoryId", AutoInventoryId)
+            };
+            DataRow dr = output.Read(parameters);
+            if (null != dr)
+            {
+                output.AutoInventoryId = dr.Field<int>("AutoInventoryId");
+                output.AutoId = dr.Field<int>("AutoId");
+                output.TenentId = dr.Field<int>("TenentId");
+                output.VIN = dr.Field<string>("VIN");
+                output.AutoColorId = dr.Field<int>("AutoColorId");
+                output.AutoTrimId = dr.Field<int>("AutoTrimId");
+                output.Doors = dr.Field<int>("Doors");
+            }
+            return output;
         }
 
         public AutoInventoryModel Create()
@@ -75,6 +97,25 @@ namespace NomadEcommerce.Model
                 this.AutoInventoryId = result;
             }
             return this;
+        }
+
+        public bool Update()
+        {
+            if (0 >= this.AutoInventoryId)
+            {
+                throw new Exception("The Auto Inventory record id is required to update an auto");
+            }
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@AutoInventoryId", this.AutoInventoryId),
+                new SqlParameter("@AutoId", this.AutoId),
+                new SqlParameter("@AutoColorId", this.AutoColorId),
+                new SqlParameter("@AutoTrimId", this.AutoTrimId),
+                new SqlParameter("@VIN", this.VIN),
+                new SqlParameter("@Doors", this.Doors)
+            };
+            DataRow result = this.Update(parameters);
+            return (null != result);
         }
     }
 }

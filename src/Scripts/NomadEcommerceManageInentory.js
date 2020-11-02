@@ -35,7 +35,7 @@ function NomadAutoDelete(AutoInventoryId, AuthToken, elemModal) {
             var Response = JSON.parse(xmlResponse.getElementsByTagName("string")[0].innerHTML);
             console.log(Response);
             if ('success' === Response.Result) {
-                location.replace('/Default.aspx');
+                location.replace('/Default.aspx?AutoInventoryId=' + AutoInventoryId);
             } else {
                 $('#ErrorMessage').html(Response.Message).show();
                 console.log('Erroring out with error code 200:' + Response.Message);

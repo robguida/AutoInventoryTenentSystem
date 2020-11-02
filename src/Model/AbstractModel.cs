@@ -46,7 +46,7 @@ namespace NomadEcommerce.Model
         {
             DataRow output = null;
             this.AddTenentId(ref parameters);
-            object result = this.DB.Execute(this.ReadProcedure, parameters, DBService.RequestType.Scalar);
+            object result = this.DB.Execute(this.ReadProcedure, parameters, DBService.RequestType.DataRow);
             if (null != result)
             {
                 output = (DataRow)result;
