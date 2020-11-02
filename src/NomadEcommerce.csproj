@@ -455,6 +455,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Auth.Master" />
     <Content Include="Default.aspx" />
+    <Content Include="Scripts\NomadEcommerceManageInentory.js" />
     <Content Include="Scripts\NomadEcommerceNumericLimit.js" />
     <Content Include="Scripts\NomadEcommercePasswordVisibility.js" />
     <Content Include="Secure\Register.aspx" />

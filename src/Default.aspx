@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NomadEcommerce.Default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <script src="/Scripts/NomadEcommerceManageInentory.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Default Page</h1>
@@ -57,6 +58,7 @@
                 console.log('here');
                 location.assign('/Auto/AutoCreate.aspx');
             });
+            $('input[type="button"][value="Edit"]').NomadManageInventoryEdit();
         });
     </script>
 </asp:Content>
