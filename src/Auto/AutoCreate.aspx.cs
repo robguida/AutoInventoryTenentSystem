@@ -2,6 +2,7 @@
 using NomadEcommerce.Lib;
 using NomadEcommerce.Model;
 using System;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -82,6 +83,38 @@ namespace NomadEcommerce
             {
                 this.Master.ErrorMessagePanel.Visible = true;
                 this.Master.ErrorMessagePanel.GroupingText = Exp.Message;
+            }
+        }
+
+        protected void LoadDummyData(object sender, EventArgs e)
+        {
+            AutoController AC = new AutoController();
+            DataTable models = AutoModelNumberEnum.GetList();
+            DataTable classes = AutoClassificatioEnum.GetList();
+            DataTable colors = (new AutoColorController()).List();
+            DataTable trims = (new AutoTrimController()).List();
+            Int64 VIN = 12345678901234567;
+            foreach (DataRow model in models.Rows)
+            {
+                string ModelNumber = model.Field<string>("value");
+                foreach (DataRow _class in classes.Rows)
+                {
+                    string ClassName = _class.Field<string>("value");
+                    foreach (DataRow color in colors.Rows)
+                    {
+                        int AutoColorId = color.Field<int>("AutoColorId");
+                        foreach (DataRow trim in trims.Rows)
+                        {
+                            int AutoTrimId = trim.Field<int>("AutoTrimId");
+                            for (int Door = 2; Door <= 5; Door++)
+                            {
+                                AC.Create(ModelNumber, ClassName, VIN.ToString(), AutoColorId, AutoTrimId, Door);
+                                VIN++;
+                            }
+                        }
+                    }
+                }
+
             }
         }
     }

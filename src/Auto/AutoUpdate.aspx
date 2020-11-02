@@ -34,6 +34,7 @@
         </div>
          <div>
             <asp:Button ID="SaveBtn" runat="server" Text="Save" OnClick="UpdateAuto"></asp:Button>
+            <input type="button" value="Cancel" onclick="location.assign('/Default.aspx');" />
         </div>
     </div>
     <script type="text/javascript">

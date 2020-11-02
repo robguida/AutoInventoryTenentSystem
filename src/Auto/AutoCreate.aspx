@@ -33,6 +33,10 @@
         </div>
          <div>
             <asp:Button ID="SaveBtn" runat="server" Text="Save" OnClick="CreateAuto"></asp:Button>
+            <input type="button" value="Cancel" onclick="location.assign('/Default.aspx');" />
+        </div>
+         <div>
+           <asp:Button ID="BulkLoadBtn" runat="server" Text="Bulk Load Dummy Data" OnClick="LoadDummyData" />
         </div>
     </div>
     <script type="text/javascript">

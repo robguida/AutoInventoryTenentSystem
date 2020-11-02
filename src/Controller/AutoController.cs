@@ -36,11 +36,16 @@ namespace NomadEcommerce.Controller
 
         public AutoInventoryModel Create(string ModelNumber, string Classification, string VIN, string ColorId, string TrimId, string Doors)
         {
+            return this.Create(ModelNumber, Classification, VIN, Int32.Parse(ColorId), Int32.Parse(TrimId), Int32.Parse(Doors));
+        }
+
+        public AutoInventoryModel Create(string ModelNumber, string Classification, string VIN, int ColorId, int TrimId, int Doors)
+        {
             AutoInventoryModel AIM = new AutoInventoryModel();
             AutoModel AM = AutoModel.LoadModel(ModelNumber, Classification).Create();
             if (0 < AM.AutoId)
             {
-                AIM = AutoInventoryModel.LoadModel(AM.AutoId, VIN, Int32.Parse(ColorId), Int32.Parse(TrimId), Int32.Parse(Doors)).Create();
+                AIM = AutoInventoryModel.LoadModel(AM.AutoId, VIN, ColorId, TrimId, Doors).Create();
             }
             return AIM;
         }
