@@ -21,11 +21,6 @@ namespace NomadEcommerce.Model
 
         public string Password { get; set; }
 
-        public string AuthKey { get; set; }
-
-        private DateTime authKeyExpire { get; set; }
-        public DateTime AuthKeyExpire { get { return this.authKeyExpire; } }
-
         protected override void SetTable()
         {
             this.TableName = "TenentUser";
@@ -55,14 +50,6 @@ namespace NomadEcommerce.Model
             if (dr.Table.Columns.Contains("TenentId"))
             {
                 output.TenentId = dr.Field<int>("TenentId");
-            }
-            if (dr.Table.Columns.Contains("AuthKey"))
-            {
-                output.AuthKey = dr.Field<string>("AuthKey");
-            }
-            if (dr.Table.Columns.Contains("AuthKeyExpire"))
-            {
-                output.authKeyExpire = dr.Field<DateTime>("AuthKeyExpire");
             }
             return output;
         }
@@ -123,6 +110,35 @@ namespace NomadEcommerce.Model
                 this.TenentUserId = result;
             }
             return this;
+        }
+
+        public string GetAuthToken()
+        {
+            string output = "";
+            List <SqlParameter> parameters = new List<SqlParameter>
+                    {
+                        new SqlParameter("@TenentId", this.TenentId),
+                        new SqlParameter("@TenentUserId", this.TenentUserId)
+                    };
+            object result = this.Db.Execute("spTenentUser_ReadAuthToken", parameters, Lib.DBService.RequestType.Scalar);
+            if (null != result)
+            {
+                output = result.ToString();
+            }
+            return output;
+        }
+
+        public static TenentUserModel ValidateAuthToken(string AuthToken)
+        {
+            TenentUserModel output = new TenentUserModel();
+            List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@AuthToken", AuthToken) };
+            object result = output.Db.Execute("spTenentUser_ValidateAuthToken", parameters, Lib.DBService.RequestType.DataRow);
+            if (null != result)
+            {
+                DataRow dr = (DataRow)result;
+                output.Load(dr);
+            }
+            return output;
         }
 
         public void Load(DataRow dr)

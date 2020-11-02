@@ -3,6 +3,7 @@ using NomadEcommerce.Model;
 using System;
 using System.Collections.Generic;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Services;
 
@@ -20,17 +21,25 @@ namespace NomadEcommerce
     {
         [WebMethod]
         [Route("AutoInventoryDelete")]
-        public string AutoInventoryDelete(int AutoInventoryId)
+        public string AutoInventoryDelete(int AutoInventoryId, string AuthToken)
         {
             string output;
             try
             {
-                bool result = (new AutoInventoryController()).Delete(AutoInventoryId);
-                Dictionary<string, string> Data = new Dictionary<string, string>
+                TenentUserModel TUM = TenentUserModel.ValidateAuthToken(AuthToken);
+                if (0 < TUM.TenentId)
                 {
-                    { "deleted", result.ToString() }
-                };
-                output = ApiResponseModel.SetSuccess(Data).ToJsonString();
+                    bool result = (new AutoInventoryController()).Delete(TUM.TenentId, AutoInventoryId);
+                    Dictionary<string, string> Data = new Dictionary<string, string>
+                        {
+                            { "deleted", result.ToString() }
+                        };
+                    output = ApiResponseModel.SetSuccess(Data).ToJsonString();
+                }
+                else
+                {
+                    throw new Exception("The Authorization Token is invalid or expireed");
+                }
             }
             catch (Exception Exp)
             {

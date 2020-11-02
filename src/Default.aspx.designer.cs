@@ -33,6 +33,15 @@ namespace NomadEcommerce
         protected global::System.Web.UI.WebControls.Repeater AutoResultsRepeater;
 
         /// <summary>
+        /// AuthTokenHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField AuthTokenHidden;
+
+        /// <summary>
         /// AutoNoResultPanel control.
         /// </summary>
         /// <remarks>

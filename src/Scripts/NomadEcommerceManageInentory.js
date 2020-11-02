@@ -1,7 +1,10 @@
 ﻿$.fn.NomadManageInventoryEdit = function () {
     $(this).click(function () {
-        console.log('data-auto-id = ' + $(this).attr('data-auto-id'));
-        console.log('data-auto-inventory-id = ' + $(this).attr('data-auto-inventory-id'));
+        //console.log('data-auto-id = ' + $(this).attr('data-auto-id'));
+        //console.log('data-auto-inventory-id = ' + $(this).attr('data-auto-inventory-id'));
+        let AutoId = $(this).attr('data-auto-id');
+        let AutoInventoryId = $(this).attr('data-auto-inventory-id');
+        location.assign('/Auto/AutoUpdate.aspx?AutoId=' + AutoId + '&AutoInventoryId=' + AutoInventoryId);
     });
 }
 
@@ -13,15 +16,15 @@ $.fn.NomadManageInventoryDelete = function (parameters) {
         let elemNoBtn = elemModal.find('input[type="button"][value="No"]').first();
         elemNoBtn.click(function () { elemModal.dialog('close'); });
         elemYesBtn.click(function () {
-            NomadAutoDelete(elemBtn.attr('data-auto-inventory-id'));
+            NomadAutoDelete(elemBtn.attr('data-auto-inventory-id'), parameters.authToken, elemModal);
         });
         $(".ui-dialog-titlebar").hide();
         elemModal.dialog('open');
     });
 }
 
-function NomadAutoDelete(AutoInventoryId) {
-    let params = { AutoInventoryId: AutoInventoryId };
+function NomadAutoDelete(AutoInventoryId, AuthToken, elemModal) {
+    let params = { AutoInventoryId: AutoInventoryId, AuthToken: AuthToken };
     console.log(params)
     $.ajax({
         type: "POST",
@@ -35,7 +38,8 @@ function NomadAutoDelete(AutoInventoryId) {
                 location.replace('/Default.aspx');
             } else {
                 $('#ErrorMessage').html(Response.Message).show();
-                console.log('Erroring out with error code 200');
+                console.log('Erroring out with error code 200:' + Response.Message);
+                elemModal.dialog('close');
                 return false;
             }
         },

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web;
-using System.Web.Configuration;
 
 namespace NomadEcommerce.Model
 {
@@ -25,9 +24,19 @@ namespace NomadEcommerce.Model
             return (null != this.Auth);
         }
 
+        /**
+         * The AuthToken must come from the SessionModel because
+         * this is where the authenticated TenentUser is stored,
+         * and the AuthToken is based on the Tenent's User Id and
+         * Tenent Id. */
+        public string GetAuthToken()
+        {
+            return this.Auth.GetAuthToken();
+        }
+
         public void SetAuthSession(TenentUserModel TenentUserModel)
         {
-            TenentUserModel.Password = "";
+            TenentUserModel.Password = null;
             this.Auth = TenentUserModel;
         }
 

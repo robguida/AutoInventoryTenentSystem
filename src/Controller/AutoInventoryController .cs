@@ -27,13 +27,13 @@ namespace NomadEcommerce.Controller
             return output;
         }
 
-        public bool Delete(int AutoInventoryId)
+        public bool Delete(int TenentId, int AutoInventoryId)
         {
             List<SqlParameter> parameters = new List<SqlParameter>
             {
                 new SqlParameter("@AutoInventoryId", AutoInventoryId)
             };
-            return this.Delete(parameters);            
+            return this.Delete(parameters, TenentId);            
         }
     }
 }

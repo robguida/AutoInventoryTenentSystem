@@ -42,7 +42,14 @@ namespace NomadEcommerce.Controller
 
         protected bool Delete(List<SqlParameter> parameters)
         {
-            // this.AddTenentId(ref parameters);
+            this.AddTenentId(ref parameters);
+            _ = this.DB.Execute(this.DeleteProcedure, parameters, DBService.RequestType.Scalar);
+            return true;
+        }
+
+        protected bool Delete(List<SqlParameter> parameters, Nullable<int> TenentId = null)
+        {
+            parameters.Add(new SqlParameter("@TenentId", TenentId));
             _ = this.DB.Execute(this.DeleteProcedure, parameters, DBService.RequestType.Scalar);
             return true;
         }

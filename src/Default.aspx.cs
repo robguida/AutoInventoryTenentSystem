@@ -23,6 +23,7 @@ namespace NomadEcommerce
                 }
                 this.AC = new AutoController();
                 this.BindAutoResults();
+                this.AuthTokenHidden.Value = sm.GetAuthToken();
             }
         }
 

@@ -45,6 +45,7 @@
                 </table>
             </FooterTemplate> 
         </asp:Repeater>
+        <asp:HiddenField ID="AuthTokenHidden" runat="server" />
     </asp:Panel>
     <asp:Panel ID="AutoNoResultPanel" runat="server" Visible="false">
         <h2>No Autos Found</h2>
@@ -52,9 +53,6 @@
             <input type="button" id="AddAutoBtn" value="Add Auto" />
         </div>
     </asp:Panel>
-    <div id="NomadModalEdit">
-
-    </div>
     <div id="NomadModalDelete">
         <h2>Confirmation Delete</h2>
         <p>Delete this record?</p>
@@ -73,14 +71,11 @@
             $('#NomadModalEdit').dialog({ modal: true, autoOpen: false });
             $('#NomadModalDelete').dialog({ modal: true, autoOpen: false });
 
-            $('input[type="button"][value="Edit"]').NomadManageInventoryEdit(
-                {
-                    modal: $('#NomadModalEdit')
-                }
-            );
+            $('input[type="button"][value="Edit"]').NomadManageInventoryEdit();
             $('input[type="button"][value="Delete"]').NomadManageInventoryDelete(
                 {
-                    modal: $('#NomadModalDelete')
+                    modal: $('#NomadModalDelete'),
+                    authToken: $('#MainContent_AuthTokenHidden').val()
                 }
             );
         });
