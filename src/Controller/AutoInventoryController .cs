@@ -8,11 +8,11 @@ using System.Web;
 
 namespace NomadEcommerce.Controller
 {
-    public class AutoController : AbstractController
+    public class AutoInventoryController : AbstractController
     {
         protected override void SetTable()
         {
-            this.TableName = "Auto";
+            this.TableName = "AutoInventory";
         }
 
         public DataTable List()
@@ -27,22 +27,11 @@ namespace NomadEcommerce.Controller
             return output;
         }
 
-        public AutoInventoryModel Create(string ModelNumber, string Classification, string VIN, string ColorId, string TrimId, string Doors)
-        {
-            AutoInventoryModel AIM = new AutoInventoryModel();
-            AutoModel AM = AutoModel.LoadModel(ModelNumber, Classification).Create();
-            if (0 < AM.AutoId)
-            {
-                AIM = AutoInventoryModel.LoadModel(AM.AutoId, VIN, Int32.Parse(ColorId), Int32.Parse(TrimId), Int32.Parse(Doors)).Create();
-            }
-            return AIM;
-        }
-
         public bool Delete(int AutoInventoryId)
         {
             List<SqlParameter> parameters = new List<SqlParameter>
             {
-                new SqlParameter("@AutoId", AutoInventoryId)
+                new SqlParameter("@AutoInventoryId", AutoInventoryId)
             };
             return this.Delete(parameters);            
         }

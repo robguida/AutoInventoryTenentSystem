@@ -1,9 +1,9 @@
-﻿$.fn.NomadNumericLimit = function (min, max) {
+﻿$.fn.NomadNumericLimit = function (options = { min: 2, max: 5}) {
     $(this).change(function () {
-        if ($(this).val() >= max) {
-            $(this).val(max);
-        } else if ($(this).val() <= min) {
-            $(this).val(min);
+        if ($(this).val() >= options.max) {
+            $(this).val(options.max);
+        } else if ($(this).val() <= options.min) {
+            $(this).val(options.min);
         }
     });
 }

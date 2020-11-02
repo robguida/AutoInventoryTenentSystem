@@ -18,6 +18,8 @@ namespace NomadEcommerce.Model
 
         public int TenentId { get { return this.Guest.TenentId; } }
 
+        public int TenentUserId { get { return this.Auth.TenentUserId; } }
+
         public bool IsAuthenticated()
         {
             return (null != this.Auth);

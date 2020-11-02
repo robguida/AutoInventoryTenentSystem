@@ -37,7 +37,7 @@
     </div>
     <script type="text/javascript">
         $(function () {
-            $("#MainContent_DoorsTextBox").NomadNumericLimit(2, 5);
+            $("#MainContent_DoorsTextBox").NomadNumericLimit({ min: 2, max: 5 });
         });
     </script>
 </asp:Content>

@@ -21,6 +21,11 @@ namespace NomadEcommerce.Model
 
         public string Password { get; set; }
 
+        public string AuthKey { get; set; }
+
+        private DateTime authKeyExpire { get; set; }
+        public DateTime AuthKeyExpire { get { return this.authKeyExpire; } }
+
         protected override void SetTable()
         {
             this.TableName = "TenentUser";
@@ -50,6 +55,14 @@ namespace NomadEcommerce.Model
             if (dr.Table.Columns.Contains("TenentId"))
             {
                 output.TenentId = dr.Field<int>("TenentId");
+            }
+            if (dr.Table.Columns.Contains("AuthKey"))
+            {
+                output.AuthKey = dr.Field<string>("AuthKey");
+            }
+            if (dr.Table.Columns.Contains("AuthKeyExpire"))
+            {
+                output.authKeyExpire = dr.Field<DateTime>("AuthKeyExpire");
             }
             return output;
         }

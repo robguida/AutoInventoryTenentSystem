@@ -52,6 +52,9 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -157,6 +160,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="InternalApi.asmx" />
     <Content Include="obj\Debug\NomadEcommerce.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\NomadEcommerce.dll" />
     <Content Include="obj\Debug\NomadEcommerce.pdb" />
@@ -737,16 +741,22 @@
       <DependentUpon>Auth.Master</DependentUpon>
     </Compile>
     <Compile Include="Controller\AbstractController.cs" />
+    <Compile Include="Controller\AutoInventoryController .cs" />
     <Compile Include="Controller\AutoTrimController.cs" />
     <Compile Include="Controller\AutoColorController.cs" />
     <Compile Include="Controller\AutoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="InternalApi.asmx.cs">
+      <DependentUpon>InternalApi.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Lib\AutoModelNumberEnum.cs" />
     <Compile Include="Lib\AutoClassificatioEnum.cs" />
     <Compile Include="Lib\DBService.cs" />
     <Compile Include="Model\AbstractModel.cs" />
+    <Compile Include="Model\ApiResponseModel.cs" />
     <Compile Include="Model\AutoInventoryModel.cs" />
     <Compile Include="Model\AutoModel.cs" />
     <Compile Include="Model\SessionModel.cs" />

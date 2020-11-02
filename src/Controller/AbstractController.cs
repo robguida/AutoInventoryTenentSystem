@@ -18,7 +18,8 @@ namespace NomadEcommerce.Controller
         protected string TableName { get; set; }
 
         protected string ListProcedure { get { return "sp" + this.TableName + "_List"; } }
-       
+        protected string DeleteProcedure { get { return "sp" + this.TableName + "_Delete"; } }
+
         abstract protected void SetTable();
 
         protected AbstractController()
@@ -37,6 +38,13 @@ namespace NomadEcommerce.Controller
                 output = (DataTable)result;
             }
             return output;
+        }
+
+        protected bool Delete(List<SqlParameter> parameters)
+        {
+            // this.AddTenentId(ref parameters);
+            _ = this.DB.Execute(this.DeleteProcedure, parameters, DBService.RequestType.Scalar);
+            return true;
         }
 
         private void AddTenentId(ref List<SqlParameter> parameters)

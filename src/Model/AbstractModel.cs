@@ -21,7 +21,6 @@ namespace NomadEcommerce.Model
         protected string CreateProcedure { get { return "sp" + this.TableName + "_Create"; } }
         protected string ReadProcedure { get { return "sp" + this.TableName + "_Read"; } }
         protected string UpdateProcedure { get { return "sp" + this.TableName + "_Update"; } }
-        protected string DeleteProcedure { get { return "sp" + this.TableName + "_Delete"; } }
 
         abstract protected void SetTable();
 
@@ -60,12 +59,6 @@ namespace NomadEcommerce.Model
             this.AddTenentId(ref parameters);
             this.DB.Execute(this.UpdateProcedure, parameters, DBService.RequestType.Scalar);
             return this.Read(parameters);
-        }
-
-        protected void Delete(List<SqlParameter> parameters)
-        {
-            this.AddTenentId(ref parameters);
-            this.DB.Execute(this.DeleteProcedure, parameters, DBService.RequestType.Scalar);
         }
 
         private void AddTenentId(ref List<SqlParameter> parameters)

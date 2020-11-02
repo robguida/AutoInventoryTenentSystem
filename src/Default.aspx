@@ -52,13 +52,37 @@
             <input type="button" id="AddAutoBtn" value="Add Auto" />
         </div>
     </asp:Panel>
+    <div id="NomadModalEdit">
+
+    </div>
+    <div id="NomadModalDelete">
+        <h2>Confirmation Delete</h2>
+        <p>Delete this record?</p>
+        <div>
+            <input type="button" value="No" />
+            <input type="button" value="Yes" />
+        </div>
+    </div>
     <script type="text/javascript">
         $(function () {
             $('#AddAutoBtn').click(function () {
                 console.log('here');
                 location.assign('/Auto/AutoCreate.aspx');
             });
-            $('input[type="button"][value="Edit"]').NomadManageInventoryEdit();
+
+            $('#NomadModalEdit').dialog({ modal: true, autoOpen: false });
+            $('#NomadModalDelete').dialog({ modal: true, autoOpen: false });
+
+            $('input[type="button"][value="Edit"]').NomadManageInventoryEdit(
+                {
+                    modal: $('#NomadModalEdit')
+                }
+            );
+            $('input[type="button"][value="Delete"]').NomadManageInventoryDelete(
+                {
+                    modal: $('#NomadModalDelete')
+                }
+            );
         });
     </script>
 </asp:Content>

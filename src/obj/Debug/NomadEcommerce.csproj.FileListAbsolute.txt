@@ -278,3 +278,5 @@ D:\Projects\TestsForJobOpportunities\AutoInventoryTenentSystem\src\bin\System.We
 D:\Projects\TestsForJobOpportunities\AutoInventoryTenentSystem\src\bin\System.Web.WebPages.Razor.xml
 D:\Projects\TestsForJobOpportunities\AutoInventoryTenentSystem\src\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Projects\TestsForJobOpportunities\AutoInventoryTenentSystem\src\obj\Debug\NomadEcommerce.csproj.CopyComplete
+D:\Projects\TestsForJobOpportunities\AutoInventoryTenentSystem\src\bin\Newtonsoft.Json.dll
+D:\Projects\TestsForJobOpportunities\AutoInventoryTenentSystem\src\bin\Newtonsoft.Json.xml
