@@ -27,6 +27,8 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <asp:Panel ID="SuccessMessage" runat="server" CssClass="alert custom-success-login" role="alert"></asp:Panel>
+    <asp:Panel ID="ErrorMessage" runat="server" CssClass="alert custom-danger-login" role="alert"></asp:Panel>
     <form id="form1" runat="server">
         <div id="HeaderMenu">
             <input type="button" id="LogOutBtn" name="LogOutBtn" value="Log Out" />

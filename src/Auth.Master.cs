@@ -2,12 +2,27 @@
 using System;
 using System.Web.SessionState;
 using System.Web.UI;
-
+using System.Web.UI.WebControls;
 
 namespace NomadEcommerce
 {
     public partial class AuthMaster : MasterPage, IRequiresSessionState
     {
+        public Panel SuccessMessagePanel
+        {
+            get
+            {
+                return this.SuccessMessage;
+            }
+        }
+        public Panel ErrorMessagePanel
+        {
+            get
+            {
+                return this.ErrorMessage;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             SessionModel sm = SessionModel.Current();
