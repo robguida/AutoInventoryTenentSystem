@@ -1,13 +1,24 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NomadEcommerce.Default" %>
+<%@ MasterType VirtualPath="~/Auth.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <script src="/Scripts/NomadEcommerceManageInentory.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Default Page</h1>
     <asp:Panel ID="AutoResultsPanel" runat="server" Visible="false">
+
         <div>
-            <input type="button" id="AddAutoBtn" value="Add Auto" />
+            <div>
+                <input type="button" ID="AddAutoBtnTop" data-type="AddAutoBtn" value="Add Auto" />
+            </div>
+            <div>
+                <asp:Label ID="SearchLabel" runat="server">Search</asp:Label>
+                <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox>
+                <asp:Button ID="SearchBtn" runat="server" Text="Search" OnClick="FilterResults"></asp:Button>
+                <asp:Button ID="ClearButton" runat="server" Text="Clear" OnClick="ClearResults"></asp:Button>
+            </div>
         </div>
+
         <asp:Repeater ID="AutoResultsRepeater" runat="server" OnItemDataBound="LoadAutoResults">
             <HeaderTemplate>
                 <table class="table" cellspacing="0" rules="all" mode="Numeric" border="1" style="border-collapse:collapse;">                   
@@ -45,12 +56,15 @@
                 </table>
             </FooterTemplate> 
         </asp:Repeater>
+
         <asp:HiddenField ID="AuthTokenHidden" runat="server" />
+
     </asp:Panel>
+
     <asp:Panel ID="AutoNoResultPanel" runat="server" Visible="false">
         <h2>No Autos Found</h2>
         <div>
-            <input type="button" id="AddAutoBtn" value="Add Auto" />
+            <input type="button" id="AddAutoBtnBottom" data-type="AddAutoBtn" value="Add Auto" />
         </div>
     </asp:Panel>
     <div id="NomadModalDelete">
@@ -63,7 +77,7 @@
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#AddAutoBtn').click(function () {
+            $('input[type="button"][data-type="AddAutoBtn"]').click(function () {
                 console.log('here');
                 location.assign('/Auto/AutoCreate.aspx');
             });

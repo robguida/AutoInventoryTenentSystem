@@ -15,6 +15,15 @@ namespace NomadEcommerce
     {
 
         /// <summary>
+        /// AutoInventoryIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField AutoInventoryIdHidden;
+
+        /// <summary>
         /// ModelNumberLabel control.
         /// </summary>
         /// <remarks>
@@ -121,15 +130,6 @@ namespace NomadEcommerce
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox VinText;
-
-        /// <summary>
-        /// AutoInventoryIdHidden control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField AutoInventoryIdHidden;
 
         /// <summary>
         /// SaveBtn control.

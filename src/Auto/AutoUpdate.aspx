@@ -4,6 +4,7 @@
         <script src="/Scripts/NomadEcommerceNumericLimit.js"></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:HiddenField ID="AutoInventoryIdHidden" runat="server" />
     <h1>Auto</h1>
     <h2>Update</h2>
     <div>
@@ -29,10 +30,9 @@
         </div>
         <div>
             <asp:Label ID="VinLabel" runat="server">VIN:</asp:Label>
-            <asp:TextBox ID="VinText" runat="server"></asp:TextBox>
+            <asp:TextBox ID="VinText" runat="server" MaxLength="17"></asp:TextBox>
         </div>
          <div>
-             <asp:HiddenField ID="AutoInventoryIdHidden" runat="server" />
             <asp:Button ID="SaveBtn" runat="server" Text="Save" OnClick="UpdateAuto"></asp:Button>
         </div>
     </div>

@@ -10,10 +10,12 @@ namespace NomadEcommerce
     public partial class Default : Page
     {
         private AutoController AC { get; set; }
+        private DataTable AutoDataTable { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             SessionModel sm = SessionModel.Current();
+            this.AC = new AutoController();
             if (!Page.IsPostBack)
             {
                 if (!sm.IsAuthenticated())
@@ -21,7 +23,7 @@ namespace NomadEcommerce
                     sm.ErrorMessage = "You are not authenticated";
                     Response.Redirect("~/Secure/Login.aspx");
                 }
-                this.AC = new AutoController();
+                this.AutoDataTable = this.AC.List();
                 this.BindAutoResults();
                 this.AuthTokenHidden.Value = sm.GetAuthToken();
             }
@@ -29,10 +31,9 @@ namespace NomadEcommerce
 
         protected void BindAutoResults()
         {
-            DataTable dt = this.AC.List();
-            if (0 < dt.Rows.Count)
+            if (0 < this.AutoDataTable.Rows.Count)
             {
-                this.AutoResultsRepeater.DataSource = dt;
+                this.AutoResultsRepeater.DataSource = this.AutoDataTable;
                 this.AutoResultsRepeater.DataBind();
                 this.AutoResultsPanel.Visible = true;
                 this.AutoNoResultPanel.Visible = false;
@@ -50,6 +51,19 @@ namespace NomadEcommerce
             {
                 RepeaterItem MainRepeaterItem = e.Item;
             }
+        }
+
+        protected void FilterResults(object sender, EventArgs e)
+        {
+            this.AutoDataTable = this.AC.List("ModelNumber", this.SearchTextBox.Text);
+            this.BindAutoResults();
+        }
+
+        protected void ClearResults(object sender, EventArgs e)
+        {
+            this.SearchTextBox.Text = "";
+            this.AutoDataTable = this.AC.List();
+            this.BindAutoResults();
         }
     }
 }

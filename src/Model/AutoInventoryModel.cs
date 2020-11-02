@@ -13,7 +13,22 @@ namespace NomadEcommerce.Model
         public int AutoInventoryId { get; set; }
         public int AutoId { get; set; }
         public int TenentId { get; set; }
-        public string VIN { get; set; }
+        private string vin { get; set; }
+        public string VIN
+        {
+            get
+            {
+                return this.vin;
+            }
+            set
+            {
+                if (17 != value.Length)
+                {
+                    throw new Exception("A VIN number must be 17 letters and/or numbers");
+                }
+                this.vin = value;
+            }
+        }
         public int AutoColorId { get; set; }
         public int AutoTrimId { get; set; }
         public int Doors { get; set; }

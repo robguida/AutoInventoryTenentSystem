@@ -15,14 +15,21 @@ namespace NomadEcommerce.Controller
             this.TableName = "Auto";
         }
 
-        public DataTable List()
+        public DataTable List(string ColumnName = null, string SearchTerm = null, string OrderBy = "ModelNumber ASC", int PageOffset = 0, int PagingLimit = 50)
         {
             List<SqlParameter> parameters = new List<SqlParameter>
             {
-                new SqlParameter("@OrderBy", "ModelNumber ASC"),
-                new SqlParameter("@PagingOffset", 0),
-                new SqlParameter("@PagingLimit", 50)
+                new SqlParameter("@OrderBy", OrderBy),
+                new SqlParameter("@PagingOffset", PageOffset),
+                new SqlParameter("@PagingLimit", PagingLimit)
             };
+
+            if (null != ColumnName && null != SearchTerm)
+            {
+                string SearchParameter = "@" + ColumnName;
+                parameters.Add(new SqlParameter(SearchParameter, SearchTerm));
+           }
+
             DataTable output = this.List(parameters);
             return output;
         }

@@ -29,7 +29,7 @@
         </div>
         <div>
             <asp:Label ID="VinLabel" runat="server">VIN:</asp:Label>
-            <asp:TextBox ID="VinText" runat="server"></asp:TextBox>
+            <asp:TextBox ID="VinText" runat="server" MaxLength="17"></asp:TextBox>
         </div>
          <div>
             <asp:Button ID="SaveBtn" runat="server" Text="Save" OnClick="CreateAuto"></asp:Button>
